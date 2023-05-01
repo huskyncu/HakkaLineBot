@@ -12,14 +12,13 @@ from linebot.exceptions import (
 )
 from linebot.models import *
 
-from info import rebackinfo
 from openfile import pickup
 from identify import identify
 
 app = Flask(__name__)
 # LINE BOT info
-line_bot_api = LineBotApi(rebackinfo()['line_bot_api'])
-handler = WebhookHandler(rebackinfo()['handler'])
+line_bot_api = LineBotApi("YOUR CHANNEL ACCESS TOKEN")
+handler = WebhookHandler("YOUR CHANNEL SECRET")
 
 @app.route("/callback", methods=['POST'])
 def callback():
