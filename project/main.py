@@ -11,7 +11,7 @@ from linebot.exceptions import (
     InvalidSignatureError
 )
 from linebot.models import *
-
+import threading
 from openfile import pickup
 from identify import identify
 from open_ai import openai_api
