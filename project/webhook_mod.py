@@ -15,7 +15,7 @@ def initial():
         return public_url
     url = connNgrok()
     driver = webdriver.Chrome("chromedriver.exe")
-    driver.get("https://developers.line.biz/console/channel/1660935653")
+    driver.get("https://developers.line.biz/console/channel/"+channelID)
     driver.find_element(
         By.XPATH, "/html/body/div[2]/div/div[3]/div/div[3]/div[2]/a").click()
     driver.find_element(
