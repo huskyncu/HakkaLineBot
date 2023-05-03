@@ -14,6 +14,8 @@ from linebot.models import *
 
 from openfile import pickup
 from identify import identify
+from open_ai import openai_api
+from webhook_mod import verify,initial
 
 app = Flask(__name__)
 # LINE BOT info
@@ -86,8 +88,15 @@ def handle_message(event):
     handle_non_text_message(event)
 
 
-if __name__ == "__main__":
-    port = int(os.environ.get('PORT', 80))
-    app.run(host='0.0.0.0', port=port)
+def running():
+    app.run("0.0.0.0", port=80)
 
-os.system('pause')
+
+if __name__ == "__main__":
+    driver = initial()
+    # port = int(os.environ.get('PORT', 80))
+    t1 = threading.Thread(target=running)
+    t = threading.Thread(target=verify, args=(driver,))
+    t.start()
+    t1.start()
+
