@@ -2,7 +2,7 @@ import openai
 from info import rebackinfo
 def openai_api(text):
         # 設定 OpenAI 憑證
-    openai_api_key = rebackinfo()['openai_api_key ']
+    openai_api_key = rebackinfo()['openai_api_key']
     headers = {
         'Content-Type': 'application/json',
         'Authorization': f'Bearer {openai_api_key}'
