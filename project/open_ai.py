@@ -5,14 +5,14 @@ def openai_api(text):
     openai_api_key = rebackinfo()['open_api_key']
     headers = {
         'Content-Type': 'application/json',
-        'Authorization': f'Bearer {open_api_key}'
+        'Authorization': f'Bearer{openai_api_key}'
     }
 
 # OpenAI 模型回覆
     openai.api_key = openai_api_key
     # 將第六個字元之後的訊息發送給 OpenAI
     response = openai.Completion.create(
-        model='gpt-3.5-turbo',
+        model='text-davinci-003',
         prompt=text,
         max_tokens=256,
         temperature=0.5,

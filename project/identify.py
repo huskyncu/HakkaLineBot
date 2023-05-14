@@ -42,9 +42,9 @@ def identify(msgID):
     confidence_score = prediction[0][index]
 
     # Print prediction and confidence score
-    print("Class:", class_name[2:], end="")
+    print("Class:", class_name[2:])
     print("Confidence Score:", confidence_score)
     if confidence_score>0.8:
-        return "這是"+str(class_name[2:])
+        return str(class_name[2:])
     else:
         return "無法辨識圖片，請再重傳一次"

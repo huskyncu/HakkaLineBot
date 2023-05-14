@@ -15,13 +15,14 @@ def initial():
         return public_url
     url = connNgrok()
     driver = webdriver.Chrome("chromedriver.exe")
+    channelID="1660935653"
     driver.get("https://developers.line.biz/console/channel/"+channelID)
     driver.find_element(
         By.XPATH, "/html/body/div[2]/div/div[3]/div/div[3]/div[2]/a").click()
     driver.find_element(
-        By.XPATH, "/html/body/div[2]/div/div[3]/div/div[3]/div[2]/form/div/div[1]/input").send_keys("gmail_account")
+        By.XPATH, "/html/body/div[2]/div/div[3]/div/div[3]/div[2]/form/div/div[1]/input").send_keys("hakkalinebot6@gmail.com")
     driver.find_element(
-        By.XPATH, "/html/body/div[2]/div/div[3]/div/div[3]/div[2]/form/div/div[2]/input").send_keys("password")
+        By.XPATH, "/html/body/div[2]/div/div[3]/div/div[3]/div[2]/form/div/div[2]/input").send_keys("hakka0523")
     driver.find_element(
         By.XPATH, "/html/body/div[2]/div/div[3]/div/div[3]/div[2]/form/div/div[5]/button").click()
     time.sleep(3)
