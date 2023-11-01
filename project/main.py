@@ -13,16 +13,21 @@ from linebot.exceptions import (
 )
 from linebot.models import *
 import threading
-from info import rebackinfo
 from openfile import pickup, pickup2,pickup_img
 from identify import identify
 from webhook_mod import initial, verify
 from open_ai import openai_api
-from firebase_ import insert_ele,shop_ele
+import json
+
 app = Flask(__name__)
 # LINE BOT info
-line_bot_api = LineBotApi(rebackinfo()['line_bot_api'])
-handler = WebhookHandler(rebackinfo()['handler'])
+def get_data():
+    with open('data.json','r') as f:
+        data = json.load(f)
+    return data
+data = get_data()
+line_bot_api = LineBotApi(data['line_bot_api'])
+handler = WebhookHandler(data['handler'])
 
 
 @app.route("/callback", methods=['POST'])
@@ -47,15 +52,6 @@ def handle_text_message(event):
     if user_msg not in keywords:
         line_bot_api.push_message(event.source.user_id, TextSendMessage(
                 text=openai_api(user_msg)))
-    # else:
-    #     if "我要" in user_msg:
-    #         ans = insert_ele(event.message.userId,user_msg.replace('我要','\n'))
-    #         txt = ""
-    #         for i in ans:
-    #             txt+=i
-    #         line_bot_api.push_message(event.source.userId,TextSendMessage(text=txt))
-    #     elif "拿取" in user_msg:
-    #         shop_ele(event.message.userId,user_msg.replace('拿取','\n'))
             
 
 

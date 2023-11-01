@@ -1,8 +1,12 @@
 import openai
-from info import rebackinfo
+import json
+def get_data():
+    with open('data.json','r') as f:
+        data = json.load(f)
+    return data
 def openai_api(text):
         # 設定 OpenAI 憑證
-    openai_api_key = rebackinfo()['open_api_key']
+    openai_api_key = get_data()['open_api_key']
     headers = {
         'Content-Type': 'application/json',
         'Authorization': f'Bearer{openai_api_key}'

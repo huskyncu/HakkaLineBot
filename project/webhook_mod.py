@@ -3,8 +3,14 @@ from selenium.webdriver.common.by import By
 import time
 from pyngrok import ngrok
 from selenium.webdriver.common.keys import Keys
-
-
+from selenium import webdriver
+from selenium.webdriver.chrome.service import Service as ChromeService
+from webdriver_manager.chrome import ChromeDriverManager
+import json
+def get_data():
+    with open('data.json','r') as f:
+        data = json.load(f)
+    return data
 def initial():
     def connNgrok():
         ngrok.kill()
@@ -13,18 +19,19 @@ def initial():
         public_url = ngrok.get_tunnels()[0].public_url
         print(" * ngrok tunnel \"{}\" -> \http://127.0.0.1:{}/\"".format(public_url, port))
         return public_url
+    data = get_data()
     url = connNgrok()
-    driver = webdriver.Chrome("chromedriver.exe")
-    channelID="1660935653"
+    driver = webdriver.Chrome(executable_path=ChromeDriverManager().install())
+    channelID=data['channelID']
     driver.get("https://developers.line.biz/console/channel/"+channelID)
     driver.find_element(
         By.XPATH, "/html/body/div[2]/div/div[3]/div/div[3]/div[2]/a").click()
     driver.find_element(
-        By.XPATH, "/html/body/div[2]/div/div[3]/div/div[3]/div[2]/form/div/div[1]/input").send_keys("hakkalinebot6@gmail.com")
+        By.XPATH, "/html/body/div[2]/div/div[3]/div/div[3]/div[2]/form/div/div[1]/input").send_keys(data['account'])
     driver.find_element(
-        By.XPATH, "/html/body/div[2]/div/div[3]/div/div[3]/div[2]/form/div/div[2]/input").send_keys("hakka0523")
+        By.XPATH, "/html/body/div[2]/div/div[3]/div/div[3]/div[2]/form/div/div[2]/input").send_keys(data['password'])
     driver.find_element(
-        By.XPATH, "/html/body/div[2]/div/div[3]/div/div[3]/div[2]/form/div/div[5]/button").click()
+        By.XPATH, "/html/body/div[2]/div/div[3]/div/div[3]/div[2]/form/div/div[4]/button").click()
     time.sleep(3)
     driver.find_element(
         By.XPATH, "//*[@id=\"app\"]/section/div/div/div[1]/nav/ul/li[2]/button").click()
