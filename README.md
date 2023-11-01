@@ -20,7 +20,6 @@
 * Line developer 內建關鍵字回應功能
 * Python串接LineBot
 * 簡易機器學習訓練與辨識菜色
-* firebase 資料庫
 
 ## 如何使用：
 因為程式串接無法使用雲端服務，因此只能使用程式裡的ngrok伺服器開放webhook網址，接著再使用程式自動更新message API的webhook url，大家可以正常使用。
